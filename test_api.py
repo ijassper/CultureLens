@@ -3,10 +3,10 @@ from streamlit_searchbox import st_searchbox
 import random
 import requests
 
-service_key = "fdd83012-5ac2-4837-907b-13bb4819b5b0"
+service_key = "9033db1f-d0ca-4000-a5c6-49bead07be53"
 search_name = "백제"
 
-url = f"https://culture.go.kr/data/OpenAPI/OpenAPIView.do?id=82"
+url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey=service_key&numOfRows=10&pageNo=1"
 
 response = requests.get(url)
 
