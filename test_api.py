@@ -6,7 +6,7 @@ import requests
 service_key = "9033db1f-d0ca-4000-a5c6-49bead07be53"
 search_name = "백제"
 
-url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey=service_key&numOfRows=10&pageNo=1"
+url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey=9033db1f-d0ca-4000-a5c6-49bead07be53&numOfRows=10&pageNo=1"
 
 response = requests.get(url)
 
