@@ -3,12 +3,12 @@ from streamlit_searchbox import st_searchbox
 import random
 import requests
 
-service_key = "9033db1f-d0ca-4000-a5c6-49bead07be53"
+service_key = st.secrets["SERVICE_KEY"]
 search_name = "백제"
 
-url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey=9033db1f-d0ca-4000-a5c6-49bead07be53&numOfRows=10&pageNo=1"
+url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey={service_key}&numOfRows=10&pageNo=1"
 
-response = requests.get(url)
+response = requests.get(url, timeout=5)
 
 if response.status_code == 200:
   st.write("데이터 호출 성공")
