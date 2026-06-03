@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_searchbox import st_searchbox
 import random
-import request
+import requests
 
 service_key = "fdd83012-5ac2-4837-907b-13bb4819b5b0"
 search_name = "백제"
