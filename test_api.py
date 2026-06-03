@@ -12,7 +12,7 @@ response = requests.get(url)
 
 if response.status_code == 200:
   st.write("데이터 호출 성공")
-  st.write(respones.text)
+  st.write(response.text)
 else:
   st.write(f"호출 오류: {response.status_code}")
 
