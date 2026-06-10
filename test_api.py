@@ -6,7 +6,7 @@ import requests
 service_key = st.secrets["SERVICE_KEY"]
 search_name = "백제"
 
-url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey={service_key}&numOfRows=10&pageNo=1"
+url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey={service_key}&numOfRows=100&pageNo=1"
 
 response = requests.get(url, timeout=5)
 
