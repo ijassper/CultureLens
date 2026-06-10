@@ -1,27 +1,19 @@
 import streamlit as st
 from streamlit_searchbox import st_searchbox
 import random
-import requests
+import json
 
-service_key = st.secrets["SERVICE_KEY"]
-search_name = "백제"
+@st.cache_data
+def load_data():
+    with open('response_1780497509258.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data['response']['body']['items']['item']
 
-url = f"https://api.kcisa.kr/openapi/service/rest/meta/MPKreli?serviceKey={service_key}&numOfRows=100&pageNo=1"
+items = load_data()
+culture_db = {item['title']: (item['description'] if item['description'] else "설명 없음") for item in items}
 
-response = requests.get(url, timeout=5)
-
-if response.status_code == 200:
-  st.write("데이터 호출 성공")
-  st.write(response.text)
-else:
-  st.write(f"호출 오류: {response.status_code}")
-
-# 문화재 정보를 담고 있는 딕셔너리 - API
-culture_db = {
-    "다보탑": "신라의 예술미가 돋보이는 탑입니다.",
-    "불국사": "통일신라 시대의 대표적인 사찰입니다.",
-    "석굴암": "정교하게 설계된 화강암 석굴 사원입니다."
-}
+st.title("문화제 설명")
+selected = st.selectbox("문화재 선택:", list(culture_db.keys()))
 
 # 문화재 설명을 찾아주는 함수
 def get_docent_info(name):
