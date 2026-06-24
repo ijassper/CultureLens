@@ -10,8 +10,12 @@ def load_data():
     return data['response']['body']['items']['item']
 
 items = load_data()
-# 문화재 이름(title)을 키로, 상세설명(description)을 값으로 딕셔너리 구축
-culture_db = {item['id']: item for item in items}
+
+culture_db = {}
+for item in items:
+    # 제목 + 크기를 합쳐서 유일한 키 생성 (크기가 null이면 '알수없음' 처리)
+    unique_key = f"{item['title']} ({item.get('extent') or '크기미상'})"
+    culture_db[unique_key] = item
 
 # 2. UI 구성
 st.title("🏛️ AI 문화재 도슨트")
@@ -25,8 +29,8 @@ item = culture_db[selected_id]
 
 # 4. 결과 출력
 if selected:
-    st.subheader(f"🔍 {selected}")
-    st.success(culture_db[selected])
+    info = culture_db[selected]
+    st.write(info['description'] or "설명 없음")
     
     # 5. 추천 기능
     recommend_list = [key for key in culture_db.keys() if key != selected]
