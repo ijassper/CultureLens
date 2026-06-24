@@ -5,7 +5,7 @@ import random
 # 1. JSON 파일 불러오기
 @st.cache_data # 데이터를 캐싱하여 앱 속도를 높입니다.
 def load_data():
-    with open('response_1780497509258.json', 'r', encoding='utf-8') as f:
+    with open('response_1781098357586.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
     return data['response']['body']['items']['item']
 
