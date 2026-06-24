@@ -22,10 +22,8 @@ st.title("🏛️ AI 문화재 도슨트")
 st.write("우리 박물관의 보물을 검색하고 AI의 설명을 들어보세요!")
 
 # 3. 검색창 (st.selectbox 사용)
-options = {item['title'] + " (" + item['id'][-5:] + ")": item['id'] for item in items}
-selected_label = st.selectbox("문화재 선택:", list(options.keys()))
-selected_id = options[selected_label]
-item = culture_db[selected_id]
+options = list(culture_db.keys())
+selected = st.selectbox("문화재 선택:", options)
 
 # 4. 결과 출력
 if selected:
