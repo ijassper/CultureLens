@@ -11,15 +11,17 @@ def load_data():
 
 items = load_data()
 # 문화재 이름(title)을 키로, 상세설명(description)을 값으로 딕셔너리 구축
-culture_db = {item['title']: (item['description'] if item['description'] else "설명이 등록되지 않았습니다.") for item in items}
+culture_db = {item['id']: item for item in items}
 
 # 2. UI 구성
 st.title("🏛️ AI 문화재 도슨트")
 st.write("우리 박물관의 보물을 검색하고 AI의 설명을 들어보세요!")
 
 # 3. 검색창 (st.selectbox 사용)
-options = list(culture_db.keys())
-selected = st.selectbox("문화재를 선택하세요:", options)
+options = {item['title'] + " (" + item['id'][-5:] + ")": item['id'] for item in items}
+selected_label = st.selectbox("문화재 선택:", list(options.keys()))
+selected_id = options[selected_label]
+item = culture_db[selected_id]
 
 # 4. 결과 출력
 if selected:
